@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/js/leaflet.ajax.min.js"></script>
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Територіальні межі України</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="import" href="map/index.html">
+
+
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            
+            <nav class="navbar navbar-expand-lg navbar-light desktop-menu">
+                <a class="navbar-brand" href="#"><img src="static/logo_min_ukr.png" class="logo" /></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link" href="#mapa">МАПА</a>
+                        <a class="nav-item nav-link" href="#atlas">АТЛАС</a>
+                        <a class="nav-item nav-link" href="#download-section">ЗАВАНТАЖИТИ</a>
+                        <a class="nav-item nav-link" href="#developers">РОЗРОБНИКИ</a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="mobile-menu">
+                <a class="navbar-brand" href="#"><img src="static/logo_min_ukr.png" class="logo" /></a>
+                <a id="menu-toggle" href="#" class="btn btn-lg toggle">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                </a>
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav">
+                        <a id="menu-close" href="#" class="btn btn-default btn-lg pull-right toggle">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                        </a>
+                        <li>
+                            <a href="#mapa">МАПА</a>
+                        </li>
+                        <li>
+                            <a href="#atlas">АТЛАС</a>
+                        </li>
+                        <li>
+                            <a href="#download-section">ЗАВАНТАЖИТИ</a>
+                        </li>
+                        <li>
+                            <a href="#developers">РОЗРОБНИКИ</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main role="main">
+
+        <div class="container first-block">
+            <div class="row">
+                <img src="static/rectangle-vert.svg" id="vert-rectangle" />
+                <div>
+                    <div class="col-md-6">
+                        <h1 id="title-text">АДМІНІСТРАТИВНО-ТЕРИТОРІАЛЬНИЙ УСТРІЙ УКРАЇНИ</h1>
+                    </div>
+                    <div class="col-md-8">
+                        <p id="title-subtitle">
+                            У 2014 році, після затвердження Концепції реформування місцевого самоврядування, у нашій країні
+                            розпочалися трансформаційні зміни, наслідком яких стало затвердження нового
+                            адміністративно-територіального устрою районного рівня та рівня територіальних громад.<br /><br />
+                            В середині 2020 року Україна отримала новий адміністративно-територіальний устрій,
+                            межі одиниць якого ви можете завантажити у два кліки.
+                        </p>
+                        <a class="download-file" href="#svg-object"><button class="download-button" id="download-main-button">ЗАВАНТАЖИТИ АТЛАС</button></a>
+                    </div>
+                    <img src="static/ukraine-main.png" id="ukraine-main-img" />
+                </div>
+                <img src="static/rect-fig.svg" id="horizontal-rectangle" />
+            </div>
+        </div>
+
+
+
+        <!-- Interactive GeoJson map. Issues: width of map -->
+        <div class="grey-background">
+            <div class="container" id="mapa">
+                <div class="row">
+
+                    <span class="blue-circle" id="interactive-circle-light"></span>
+                    <span class="dark-circle" id="interactive-circle-dark"></span>
+                    <div class="first-element">
+                        <h2 class="header-class-blue"><b>ІНТЕРАКТИВНА МАПА</b></h2>
+                        <h6 class="sub-header-class-blue"><b>АДМІНІСТРАТИВНО-ТЕРИТОРІАЛЬНИХ ОДИНИЦЬ УКРАЇНИ</b></h6>
+                        <br />
+                        <p>
+                            - клікайте на територіальну громаду та переглядайте інформацію про неї;<br />
+- обирайте потрібний шар: області, райони або територіальні громади.
+
+                        </p>
+                    </div>
+                    <img src="static/rect-fig.svg" id="dots-rectangle" />
+                    <!--                    <div id="my-map"></div>-->
+                    <div class="test-map col-md-12">
+                        <object type="text/html" data="map/index.html"></object>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clickable Atlas ATY Ukraine map Issues: relative position of dark circles -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="light-circle" style="padding-right:30px;width:244px;height:244px">
+                                <span class="dark-circle" id="atu-circle-dark"></span>
+                                <p class="atlas-novogo-atu" id="atlas">
+                                    <b>АТЛАС НОВОГО АТУ</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-8 offset-md-1">
+
+                            <div class="grey-background atlas-description">
+                                <p>
+                                    В атласі нижче ви знайдете коротку характеристику адміністративно-територіального устрою України в
+                                    цілому та областей окремо. У ньому вперше відображено новий адміністративно-територіальний устрій
+                                    України районного та базового рівнів, який був затверджений урядом України у червні 2020 року
+                                    та постановою Верховної Ради України у липні 2020 року. <br /> <br />
+                                    <b>Клікніть на область, щоб переглянути інформацію про її АТУ.</b>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container map-container">
+            <object id="svg-object" data="static/ukraine-atu.svg" type="image/svg+xml"></object>
+            <div class="row">
+                <div class="col-md-4 atlas-button-flex-container">
+                    <div class="col-md-3">
+                        <a class="download-file" href="#buttons" onclick="show_atu_oblast()"><button class="atlas-button" style="margin-top: 20px;">АТУ ОБЛАСТЕЙ</button></a>
+                        <a class="download-file" href="#buttons" onclick="show_atu_marks()"><button class="atlas-button">УМОВНІ ПОЗНАЧЕННЯ</button></a>
+                        <a class="download-file" href="static/Атлас_нового_АТУ_2020__електронна_версія_.pdf" download="Атлас_нового_АТУ_2020__електронна_версія_.pdf"><button class="atlas-button">ЗАВАНТАЖИТИ АТЛАС PDF</button></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Download section -->
+        <div class="grey-background" id="download-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="dark-circle" id="white-circle-id"></div>
+                                <div class="light-circle download-block-mobile" style="padding-right:30px;width:268px;height:268px">
+                                    <p class="atlas-novogo-atu">
+                                        <b>ЗАВАНТАЖУЙТЕ ІНФОРМАЦІЮ ПРО НОВИЙ АТУ</b>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-8 offset-md-1">
+                                <div class="info-class download-info">
+                                    <p>
+                                       Мінрегіон та команда розробників сприяє відкритості геопросторових даних. В цьому розділі для вільного завантаження розміщені полігональні шари геопросторових даних меж областей, районів та територіальних громад.<br />
+Межа одиниці АТУ - це умовна замкнена лінія на поверхні землі, що відокремлює одну одиницю АТУ від інших та визначається виключно у межах та у спосіб, які визначенні чинним законодавством України.<br />
+Шари геопросторових даних, які розміщені на цій сторінці показують орієнтовне місце розташування меж нових районів і територіальних громад, які можуть слугувати для їх встановлення шляхом, що визначений чинним законодавством.<br />
+Перед завантаженням, будь ласка, ознайомтеся із політикою користування та дотримуйтесь її під час публічного використання завантажених файлів.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="static/rect-fig.svg" id="download-horizontal-rectangle" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grey-background download-grey">
+            <div class="container no-padding politic-box">
+
+                <div class="row">
+                    <div class="col-md-12 order-2">
+                        <div class="politic-checkbox">
+                            <input type="checkbox" class="check_box" id="checkbox1" style="margin-right:30px">
+                            <label for="checkbox1" />
+                            <div>
+                                <p class="small-font">* при завантаженні, повідомляю, що ознайомився
+                                    з Політикою користування нижче.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 order-1">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a class="download-file" href="ADMIN_UKR/ADMIN_1.geojson" download="oblast.geojson"><button class="download-button" id="download-button" disabled>МЕЖІ ОБЛАСТЕЙ</button></a>
+                            </div>
+                            <div class="col-md-4">
+                                <a class="download-file" href="ADMIN_UKR/ADMIN_2.geojson" download="rayon.geojson"><button class="download-button" id="download-button" disabled>МЕЖІ НОВИХ РАЙОНІВ</button></a>
+                            </div>
+                            <div class="col-md-4">
+                                <a class="download-file" href="ADMIN_UKR/ADMIN_3.geojson" download="terhromad.geojson"><button class="download-button" id="download-button" disabled>МЕЖІ ТЕРИТОРІАЛЬНИХ ГРОМАД </button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container copyright-box">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-2 politic-header">
+                                <p><b>ПОЛІТИКА <br />КОРИСТУВАННЯ</b></p>
+                            </div>
+                            <div class="col-md-12 politic-header-mobile">
+                                <p><b><a data-toggle="modal" href="#politicModalCenter">ПОЛІТИКА КОРИСТУВАННЯ</a></b></p>
+                            </div>
+                            <div class="col-md-10 politic-text">
+                                <p class="small-font">Дані адміністративно-територіального устрою України є відкритими, що поширюються на умовах ліцензії Creative Commons CC BY-SA (із зазначенням авторства — розповсюдження на тих самих умовах).<br />
+                                    Ви можете вільно копіювати, поширювати, передавати й змінювати дані, які розміщені тут, посилаючись при цьому на Мінрегіон (Міністерство розвитку громад та територій України).<br />
+                                    Мінрегіон дозволяє: поширювати — копіювати, передавати дані адміністративно-територіального устрою України, навіть з комерційною метою, змінювати — переробляти, розвивати твір.
+                                    Умови такі: слід зберігати посилання на попередніх виконавців у визначеній ними формі (Attribution),
+                                    змінений наступним співавтором твір має поширюватися на умовах цієї ж ліцензії CC BY-SA (Share Alike).<br />
+                                    Як вказати посилання на Мінрегіон? <br />
+                                    Будь-ласка, посилання на Мінрегіон зазначайте наступним чином: «© Мінрегіон».
+                                    Для мап, що використовуються в електронному вигляді, посилання на їх джерело повинне знаходитись у кутку мапи.<br /><br />
+                                    Якщо ви користуєтесь носіями, де використання гіпертекстових посилань неможливе
+                                    (наприклад друковані матеріали), ми пропонуємо посилатися безпосередньо на
+                                    <a href="https://www.minregion.gov.ua" class="small-font">www.minregion.gov.ua</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Developers section Issues: add circles in the corner-->
+        <div class="" id="developers">
+            <div id="corner-circle"></div>
+            <div class="dark-circle" id="small-circle-id"></div>
+            <div class="container dev-block">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="dark-blue-color title-padding"><b>РОЗРОБНИКИ</b></h4>
+                    </div>
+                    <div class="col-md-11 offset-md-1">
+                        <div class="row">
+                            <div class="col-md-6 developers">
+                                <img src="static/obse_logo.svg" />
+                                <p class="span-tdy-width-1">Картографічні матеріали підготовлено за підтримки проєкту 
+                                    «Підтримка належного врядування в місцевих громадах, як складової реформи децентралізації»
+                                    Координатора проєктів ОБСЄ в Україні</p>
+                                <img src="static/dev-logos-foreign.png" />
+                            </div>
+                            <div class="col-md-5 offset-md-1 developers">
+
+                                <img src="static/logo-tdy.svg" />
+                                <p class="span-tdy-width-2">Сторінку проєкту створено за <br />підтримки Товариства дослідників<br /> України</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <h4 class="dark-blue-color title-padding" style="font-size:24px;margin-bottom:0px"><b>КОМАНДА ПРОЄКТУ</b></h4>
+                    </div>
+                    <div class="col-md-11 offset-md-1">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="ava-item row">
+
+                                    <div class="col-4 item">
+                                        <img src="static/pavlo.png" />
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="person-title">
+                                            <p class="person-name"><b>ПАВЛО ОСТАПЕНКО</b> <br />
+                                            <p>керівник проєкту</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="ava-item row">
+                                    <div class="col-4 item">
+                                        <img src="static/roman.png" />
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="person-title">
+                                            <p class="person-name"><b>РОМАН ПЕРХАЛЮК</b></p>
+                                            <p>картографія</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="ava-item row">
+                                    <div class="col-4 item">
+                                        <img src="static/oleksandr.png" />
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="person-title">
+                                            <p class="person-name"><b>ОЛЕКСАНДР БОНЧКОВСЬКИЙ</b></p>
+                                            <p>картографія</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="ava-item row">
+                                    <div class="col-4 item">
+                                        <img src="static/stanislav.png" />
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="person-title">
+
+                                            <p class="person-name"><b>СТАНІСЛАВ ОСТАПЕНКО</b></p>
+                                            <p>аналітик даних, картографія</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 70%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Загальний огляд</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="" id="image-holder1" />
+                        <img src="" id="image-holder2" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Назад</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <!-- Issues: make responsive navigation -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 order-md-2 order-sm-1">
+                    <ul class="footer-nav">
+                        <li><a href="#mapa">ІНТЕРАКТИВНА МАПА</a></li>
+                        <li><a href="#atlas">АТЛАС</a></li>
+                        <li><a href="#download-section">ЗАВАНТАЖИТИ</a></li>
+                        <li><a href="#developers">РОЗРОБНИКИ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-9 order-md-1 order-sm-2">
+                    <div class="footer-logo">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="static/logo_min_ukr.png" />
+                            </div>
+                            <div class="col-md-4 col-7">
+                                <img src="static/osce_logo.jpg" />
+                            </div>
+                            <div class="col-md-4 col-5 tdu-logo">
+                                <img src="static/TDU.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9 footer-text order-md-3 order-sm-3">
+                    <p class="small-font ">Власність Міністерства розвитку громад та територій України, 2020</p>
+                    <p class="small-font " style="max-width:55%">Весь контент доступний за ліцензією <a href="https://creativecommons.org/licenses/by/4.0/deed.uk" class="small-font">Creative Commons Attribution 4.0 International license</a>, якщо не зазначено інше.
+                    <p class="small-font " style="padding-bottom: 20px">Всі права захищені</p>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="politicModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mobile-policy">
+                    <div class="col-md-12">
+                        <h3>політика користування</h3>
+                        <p class="small-font">Дані адміністративно-територіального устрою України є відкритими, що поширюються на умовах ліцензії Creative Commons CC BY-SA (із зазначенням авторства — розповсюдження на тих самих умовах).<br />
+                            Ви можете вільно копіювати, поширювати, передавати й змінювати дані, які розміщені тут, посилаючись при цьому на Мінрегіон (Міністерство розвитку громад та територій України).<br />
+                            Мінрегіон дозволяє: поширювати — копіювати, передавати дані адміністративно-територіального устрою України, навіть з комерційною метою, змінювати — переробляти, розвивати твір.
+                            Умови такі: слід зберігати посилання на попередніх виконавців у визначеній ними формі (Attribution),
+                            змінений наступним співавтором твір має поширюватися на умовах цієї ж ліцензії CC BY-SA (Share Alike).<br />
+                            Як вказати посилання на Мінрегіон? <br />
+                            Будь-ласка, посилання на Мінрегіон зазначайте наступним чином: «© Мінрегіон».
+                            Для мап, що використовуються в електронному вигляді, посилання на їх джерело повинне знаходитись у кутку мапи.<br />
+                            Якщо ви користуєтесь носіями, де використання гіпертекстових посилань неможливе
+                            (наприклад друковані матеріали), ми пропонуємо посилатися безпосередньо на
+                            <a href="https://www.minregion.gov.ua" class="small-font">www.minregion.gov.ua</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+
+    <script>
+        function show_atu_oblast() {
+            var base_dir = 'static/atlas_materials/';
+            changeImg(base_dir + 'atu_oblast1.png', base_dir + 'atu_oblast2.png')
+            $('#exampleModalCenter').modal('show');
+        }
+
+        function show_atu_marks() {
+            var base_dir = 'static/atlas_materials/';
+            changeImg(base_dir + "umovni-poznachennya.png", "")
+            $('#exampleModalCenter').modal('show');
+        }
+    </script>
+
+
+
+</body>
