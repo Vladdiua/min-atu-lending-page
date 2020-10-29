@@ -21,9 +21,11 @@ a {
     line-height: 150%;
 }
 
-a:active,a:focus,.btn:focus {
+a:active,
+a:focus,
+.btn:focus {
     outline: none;
-    box-shadow:none!important;
+    box-shadow: none !important;
 }
 
 html {
@@ -451,14 +453,16 @@ header {
 }
 
 .download-info p {
-        font-size: 17px;
-    }
+    font-size: 17px;
+}
+
 #download-section {
     padding-bottom: 0px;
 }
-    #download-section .container {
-        padding-bottom: 0;
-    }
+
+#download-section .container {
+    padding-bottom: 0;
+}
 
 #white-circle-id {
     background-color: white;
@@ -474,9 +478,11 @@ header {
     top: 40vh;
 
 }
+
 .download-grey {
     padding-bottom: 20px;
 }
+
 .download-button {
     display: inline-block;
     vertical-align: top;
@@ -578,6 +584,7 @@ header {
 #developers {
     position: relative;
 }
+
 .developers img {
     max-width: 100%;
 }
@@ -723,6 +730,19 @@ footer .container {
     max-height: 70px;
 }
 
+.footer-logo img:first-child {
+    margin-top: 10px;
+}
+
+.footer-logo img:nth-child(2) {
+    margin-top: 22px;
+    ;
+}
+
+.footer-logo img::nth-child(3) {
+    padding: 10px;
+}
+
 .container {
     padding: 60px 15px;
 }
@@ -779,13 +799,16 @@ header .container {
 
     color: #193F6A;
 }
+
 .politic-box {
     padding-bottom: 10px;
     padding-top: 40px;
 }
+
 .dev-block {
     padding-top: 10px;
 }
+
 .politic-box input + .download-file {
     opacity: .5;
     pointer-events: none;
@@ -850,7 +873,7 @@ header .container {
     color: #193F6A;
     display: block;
     text-decoration: none;
-    padding:10px;
+    padding: 10px;
 }
 
 .sidebar-nav li a:hover {
@@ -907,7 +930,8 @@ header .container {
 .mobile-menu {
     display: none;
 }
-.mobile-menu .navbar-brand{
+
+.mobile-menu .navbar-brand {
     width: 80%;
     margin-bottom: 10px;
 }
@@ -940,6 +964,19 @@ header .container {
 }
 
 @media (max-width:1100px) {
+
+    .footer-logo img:first-child {
+        margin-top: 0px;
+    }
+
+    .footer-logo img:nth-child(2) {
+        margin-top: 0px;
+    }
+
+    .footer-logo img::nth-child(3) {
+        padding: 0px;
+    }
+
     .nav-link {
         margin: 0 25px;
     }
@@ -947,16 +984,17 @@ header .container {
     #svg-object {
         max-width: 110%;
     }
+
     #ukraine-main-img {
-    z-index: -2;
-    width: 50%;
-    height: auto;
-    max-width: 619px;
-    max-height: 500px;
-    position: absolute;
-    left: 530px;
-    top: 230px;
-}
+        z-index: -2;
+        width: 50%;
+        height: auto;
+        max-width: 619px;
+        max-height: 500px;
+        position: absolute;
+        left: 530px;
+        top: 230px;
+    }
 }
 
 @media (max-width:760px) {
@@ -1181,7 +1219,7 @@ header .container {
 
         color: #193F6A;
     }
-    
+
 
     .atlas-novogo-atu {
         font-family: Open Sans;
@@ -1394,6 +1432,7 @@ header .container {
         font-size: 24px;
         margin: 15px 0px;
     }
+
     .download-info {
         padding-bottom: 30px;
     }
