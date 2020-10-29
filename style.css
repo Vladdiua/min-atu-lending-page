@@ -730,16 +730,16 @@ footer .container {
     max-height: 70px;
 }
 
-.footer-logo img:first-child {
+.logo_min_ukr img {
     margin-top: 10px;
 }
 
-.footer-logo img:nth-child(2) {
+.obse_logo img {
     margin-top: 22px;
     ;
 }
 
-.footer-logo img::nth-child(3) {
+.tdu-logo img  {
     padding: 10px;
 }
 
@@ -965,18 +965,7 @@ header .container {
 
 @media (max-width:1100px) {
 
-    .footer-logo img:first-child {
-        margin-top: 0px;
-    }
-
-    .footer-logo img:nth-child(2) {
-        margin-top: 0px;
-    }
-
-    .footer-logo img::nth-child(3) {
-        padding: 0px;
-    }
-
+   
     .nav-link {
         margin: 0 25px;
     }
@@ -998,6 +987,18 @@ header .container {
 }
 
 @media (max-width:760px) {
+     .logo_min_ukr img {
+        margin-top: 0px;
+    }
+
+    .obse_logo img {
+        margin-top: 30px!important;
+    }
+
+    .tdu-logo img {
+        padding: 0px;
+    }
+
     body {
         /*        overflow-x: hidden!important;*/
     }
