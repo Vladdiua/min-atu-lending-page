@@ -578,6 +578,9 @@ header {
 #developers {
     position: relative;
 }
+.developers img {
+    max-width: 100%;
+}
 
 .dev-container-flex {
     display: flex;
