@@ -74,6 +74,9 @@ header {
     background-color: #fff;
     z-index: 9999;
 }
+.navbar-nav {
+    margin: 0 auto;
+}
 
 .header-class-blue {
     font-family: Open Sans;
@@ -198,7 +201,7 @@ header {
     font-size: 18px;
     line-height: 150%;
     /* or 27px */
-
+    margin-bottom: 100px;
     letter-spacing: 0.1em;
 
     /* Dark blue */
@@ -375,6 +378,7 @@ header {
     padding-left: 90px;
     font-size: 30px;
     width: 140%;
+    text-transform: uppercase;
 }
 
 #svg-object {}
@@ -615,6 +619,9 @@ header {
 
 .ava-item {
     margin-top: 40px;
+}
+.ava-item .item img{
+    width: 100%;
 }
 
 .person-title {
@@ -1171,7 +1178,7 @@ header .container {
         letter-spacing: 0.05em;
 
         /* Dark blue */
-
+        margin-bottom: 50px;
         color: #193F6A;
     }
 
