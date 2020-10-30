@@ -1,107 +1,107 @@
-window.onload = function () {
-    var basemap1 = L.tileLayer('https://tiles.openstreetmap.org.ua/osm/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-    });
-
-    var oblast = new L.GeoJSON.AJAX('ADMIN_UKR/ADMIN_1.geojson', {
-        style: function () {
-            return {
-                color: 'blue'
-            }
-        },
-        onEachFeature: function (feature, layer) {
-            layer.bindPopup(feature.properties.ADMIN_1);
-            layer.on('mouseover', function () {
-                this.setStyle({
-                    color: '#ffff00'
-                });
-            });
-            layer.on('mouseout', function () {
-                this.setStyle({
-                    color: 'blue'
-                });
-            });
-        }
-    });
-    var rayon = new L.GeoJSON.AJAX('ADMIN_UKR/ADMIN_2.geojson', {
-        style: function () {
-            return {
-                color: 'blue'
-            }
-        },
-        onEachFeature: function (feature, layer) {
-            layer.bindPopup(feature.properties.ADMIN_1 + '<br /><br />' + feature.properties.ADMIN_2);
-            layer.on('mouseover', function () {
-                this.setStyle({
-                    color: '#ffff00'
-                });
-            });
-            layer.on('mouseout', function () {
-                this.setStyle({
-                    color: 'blue'
-                });
-            });
-        }
-    });
-    var terhromad = new L.GeoJSON.AJAX('ADMIN_UKR/ADMIN_3.geojson', {
-        style: function () {
-            return {
-                color: 'blue'
-            }
-        },
-        onEachFeature: function (feature, layer) {
-            layer.bindPopup(feature.properties.ADMIN_1 + '<br /><br />' + feature.properties.ADMIN_2 + '<br /><br />' + feature.properties.ADMIN_3 + ' ТГ');
-            layer.on('mouseover', function () {
-                this.setStyle({
-                    color: '#ffff00'
-                });
-            });
-            layer.on('mouseout', function () {
-                this.setStyle({
-                    color: 'blue'
-                });
-            });
-        }
-    });
-
-    $.getJSON("ADMIN_UKR/ADMIN_1.geojson", function (data) {
-
-        var geojson = L.geoJson(data, {
-            onEachFeature: function (feature, layer) {
-                layer.bindPopup(feature.properties.Area_Name);
-            }
-        });
-
-
-        var map = L.map('my-map', {
-            layers: [basemap1, geojson, rayon, oblast, terhromad],
-            default: [basemap1, geojson]
-        }).fitBounds(geojson.getBounds());
-
-        var baseMaps = {
-            "Область": oblast,
-            "Район": rayon,
-            "Територіальна громада": terhromad,
-
-        };
-
-        //        var overlayMaps = [geojson];
-
-        L.control.layers(baseMaps, null).addTo(map);
-        L.control.scale({
-            options: {
-                position: 'bottomleft',
-                maxWidth: 500,
-                metric: true,
-                imperial: false,
-                updateWhenIdle: false
-            }
-        }).addTo(map);
-
-
-
-    });
-};
+//window.onload = function () {
+//    var basemap1 = L.tileLayer('https://tiles.openstreetmap.org.ua/osm/{z}/{x}/{y}.png', {
+//        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+//    });
+//
+//    var oblast = new L.GeoJSON.AJAX('ADMIN_UKR/ADMIN_1.geojson', {
+//        style: function () {
+//            return {
+//                color: 'blue'
+//            }
+//        },
+//        onEachFeature: function (feature, layer) {
+//            layer.bindPopup(feature.properties.ADMIN_1);
+//            layer.on('mouseover', function () {
+//                this.setStyle({
+//                    color: '#ffff00'
+//                });
+//            });
+//            layer.on('mouseout', function () {
+//                this.setStyle({
+//                    color: 'blue'
+//                });
+//            });
+//        }
+//    });
+//    var rayon = new L.GeoJSON.AJAX('ADMIN_UKR/ADMIN_2.geojson', {
+//        style: function () {
+//            return {
+//                color: 'blue'
+//            }
+//        },
+//        onEachFeature: function (feature, layer) {
+//            layer.bindPopup(feature.properties.ADMIN_1 + '<br /><br />' + feature.properties.ADMIN_2);
+//            layer.on('mouseover', function () {
+//                this.setStyle({
+//                    color: '#ffff00'
+//                });
+//            });
+//            layer.on('mouseout', function () {
+//                this.setStyle({
+//                    color: 'blue'
+//                });
+//            });
+//        }
+//    });
+//    var terhromad = new L.GeoJSON.AJAX('ADMIN_UKR/ADMIN_3.geojson', {
+//        style: function () {
+//            return {
+//                color: 'blue'
+//            }
+//        },
+//        onEachFeature: function (feature, layer) {
+//            layer.bindPopup(feature.properties.ADMIN_1 + '<br /><br />' + feature.properties.ADMIN_2 + '<br /><br />' + feature.properties.ADMIN_3 + ' ТГ');
+//            layer.on('mouseover', function () {
+//                this.setStyle({
+//                    color: '#ffff00'
+//                });
+//            });
+//            layer.on('mouseout', function () {
+//                this.setStyle({
+//                    color: 'blue'
+//                });
+//            });
+//        }
+//    });
+//
+//    $.getJSON("ADMIN_UKR/ADMIN_1.geojson", function (data) {
+//
+//        var geojson = L.geoJson(data, {
+//            onEachFeature: function (feature, layer) {
+//                layer.bindPopup(feature.properties.Area_Name);
+//            }
+//        });
+//
+//
+//        var map = L.map('my-map', {
+//            layers: [basemap1, geojson, rayon, oblast, terhromad],
+//            default: [basemap1, geojson]
+//        }).fitBounds(geojson.getBounds());
+//
+//        var baseMaps = {
+//            "Область": oblast,
+//            "Район": rayon,
+//            "Територіальна громада": terhromad,
+//
+//        };
+//
+//        //        var overlayMaps = [geojson];
+//
+//        L.control.layers(baseMaps, null).addTo(map);
+//        L.control.scale({
+//            options: {
+//                position: 'bottomleft',
+//                maxWidth: 500,
+//                metric: true,
+//                imperial: false,
+//                updateWhenIdle: false
+//            }
+//        }).addTo(map);
+//
+//
+//
+//    });
+//};
 
 
 
