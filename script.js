@@ -119,11 +119,11 @@
 
 if (mainPin.checked == true){
   downloadButton.forEach(function(item) {
-       item.removeAttribute("disabled");
+       item.disabled = false;
   })
 } else { 
     downloadButton.forEach(function(item) {
-       item.setAttribute("disabled","disabled");
+      item.disabled = true;
   })
 }
 
