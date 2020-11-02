@@ -109,13 +109,24 @@
    var downloadButton = document.querySelectorAll('#download-button');
 
 
-mainPin.addEventListener('click', function () {
-    console.log(downloadButton);
+//mainPin.addEventListener('click', function () {
+//    console.log(downloadButton);
+//  downloadButton.forEach(function(item) {
+//       item.removeAttribute("disabled");
+//      console.log('disabled');
+//  })
+//});
+
+if (mainPin.checked == true){
   downloadButton.forEach(function(item) {
        item.removeAttribute("disabled");
-      console.log('disabled');
   })
-});
+} else { 
+    downloadButton.forEach(function(item) {
+       item.setAttribute("disabled");
+  })
+}
+
 
 
   $("#menu-close").click(function(e) {
