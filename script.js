@@ -103,7 +103,8 @@
 //    });
 //};
 
-
+function enable()
+{
 
     var mainPin = document.querySelector('#checkbox1');
    var downloadButton = document.querySelectorAll('#download-button');
@@ -117,18 +118,18 @@
 //  })
 //});
 
-if (mainPin.checked == true){
+if (mainPin.checked === true){
   downloadButton.forEach(function(item) {
    console.log('disabled:false');
        item.disabled = false;
   })
-} else { 
+} else if (mainPin.checked === false) { 
     downloadButton.forEach(function(item) {
       item.disabled = true;
         console.log('disabled:true');
   })
 }
-
+}
 
 
   $("#menu-close").click(function(e) {
