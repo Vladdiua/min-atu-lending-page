@@ -123,7 +123,7 @@ if (mainPin.checked == true){
   })
 } else { 
     downloadButton.forEach(function(item) {
-       item.setAttribute("disabled");
+       item.setAttribute("disabled","disabled");
   })
 }
 
